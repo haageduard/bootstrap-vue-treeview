@@ -11,11 +11,13 @@ var app = new Vue({
 				<div class="card-body">
 					<b-tree-view
 						:data="treeData"
+                        :selectedItems="selectedItems"
+                        :prefix="'user-right'"
 						ref="tree"
-						:nodesDraggable="true"
-						:contextMenu="true"
+						:nodesDraggable="false"
+						:contextMenu="false"
 						:contextMenuItems="contextMenuItems"
-						:renameNodeOnDblClick="true"
+						:renameNodeOnDblClick="false"
 						:showIcons="true"
 						iconClassProp="icon"
 						prependIconClass="fas"
@@ -24,6 +26,7 @@ var app = new Vue({
 				</div>
 			</div>
 		</div>
+        <div>{{ selectedItems }}</div>
 		<div class="col-md-8" v-if="selectedNode">
 			<div class="card">
 				<div class="card-body">
@@ -35,11 +38,13 @@ var app = new Vue({
     el: '#app',
     data() {
         return {
+            selectedItems: [],
             treeData: [
                 {
                     "id": 1,
                     "name": "Users",
-                    "icon": "fa-users"
+                    "icon": "fa-users",
+                    "hasCheckBox": true,
                 },
                 {
                     "id": 2,
@@ -49,7 +54,8 @@ var app = new Vue({
                         {
                             "id": 3,
                             "name": "Neptune",
-                            "icon": "fa-book"
+                            "icon": "fa-book",
+                            "hasCheckBox": true
                         }
                     ]
                 },
@@ -69,7 +75,8 @@ var app = new Vue({
                             "children": [
                                 {
                                     "id": 101,
-                                    "name": "Mars"
+                                    "name": "Mars",
+                                    "hasCheckBox": true,
                                 }
                             ]
                         }
@@ -77,10 +84,10 @@ var app = new Vue({
                 }
             ],
             selectedNode: null,
-            contextMenuItems: [{code: 'DELETE_NODE', label: 'Delete node'}, {
+            contextMenuItems: [{ code: 'DELETE_NODE', label: 'Delete node' }, {
                 code: 'ADD_CHILD_NODE',
                 label: 'Add child'
-            }, {code: 'RENAME_NODE', label: 'Rename'}]
+            }, { code: 'RENAME_NODE', label: 'Rename' }]
         }
     },
     methods: {

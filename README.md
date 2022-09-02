@@ -56,6 +56,8 @@ export default {
 | :--------------- |:--------------|:-----------------------|:--------------|:------|
 | data             | Array         | Tree data                      | - | Yes |
 | nodeKeyProp      | String        | Name of the property containing unique node key | "id" | No |
+| prefix           | String        | Checkbox element id unique prefix
+| selectedItems    | Array         | Array where the element's index corresponds to the value of the node's keyProp property, and the element's value is equal to the value of the checkbox (node hasCheckbox must be enabled)
 | nodeChildrenProp | String        | Where to look for node children | "children" | No
 | nodeLabelProp    | String        | Name of the property containing node label | "name" | No
 | showIcons        | Boolean       | Show/hide icons        | false | No
